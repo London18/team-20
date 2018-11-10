@@ -27,4 +27,6 @@ back-end management with database and algorithm.
 
 -------------------
 
+#### HOPE YOU HAVE FUN
+
 \ ゜o゜)ノ
