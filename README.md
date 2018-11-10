@@ -1,37 +1,30 @@
-Welcome to Glitch
+Welcome to The Mix & Match
 =================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+**The Mix & Match** creates a way for people with different keywords can find their mates so that they will be able to share their stories. The app will receive information using chatbot and then utilize algorithms to match the users together.
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
+Find out more [about The Mix](https://www.themix.org.uk/).
 
 
-Your Project
+The Mix & Match Project and Demo
 ------------
-
-### ← README.md
-
-That's this file, where you can tell people what your cool website does and how you built it.
 
 ### ← index.html
 
-Where you'll write the content of your website. 
+The main UI when user wil try to get access to the chatting platform by login and entering their personal information.
 
-### ← style.css
+### ← input.html
+
+The UI page for entering user information.
+
+### ← css
 
 CSS files add styling rules to your content.
 
-### ← script.js
+### ← lib folder
 
-If you're feeling fancy you can add interactivity to your site with JavaScript.
+back-end management with database and algorithm.
 
-### ← assets
-
-Drag in `assets`, like images or music, to add them to your project
-
-Made by [Fog Creek](https://fogcreek.com/)
 -------------------
 
 \ ゜o゜)ノ
