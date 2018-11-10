@@ -7,6 +7,7 @@
     <title>The Mix</title>
 </head>
 <body>
+<img id="mixlogo" style="position: absolute; z-index: 2; width: 30%;display:none;top: 1%; left: 2%;" src="themixlogo.png" alt="backround">
 <h1 id="hh1" style="display: none">We are here to help.</h1>
 <h2 id="hh2" class="hh" style="display: none">Drag the slider and let us know more about you....</h2>
 <input type="button" id="ski" style="display: none; left:5%;"value="Skip"/>
@@ -17,7 +18,7 @@
     <input id="sliderr"type="range" onchange="updateSlider(this.value)" min="1" max="6" value="3" class="slider" id="myRange">
     <img class="smiley2"  src="sad-smiley.png" alt="backround">
 </div>
-<h3 id="slvalue" style="display: none; z-index: 2; position: absolute;">Value</h3>
+<h3 id="slvalue" style="display: none; z-index: 2; position: absolute;">MODERATE</h3>
 <div id="blackout" style='display:none;'></div>
 <img id="backrr" onclick="cl()"  src="backround.png" alt="backround">
 
@@ -33,6 +34,7 @@
         document.getElementById("sml1").style.display="block";
         document.getElementById("ski").style.display="block";
         document.getElementById("nex").style.display="block";
+        document.getElementById("mixlogo").style.display="block";
         document.getElementById("slvalue").style.display="block";
     }
 

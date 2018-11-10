@@ -6,11 +6,13 @@
     <meta charset="UTF-8">
     <title>The Mix</title>
 </head>
+<body>
+<img id="mixlogo" style="position: absolute; z-index: 2; width: 30%;display:none;top: 1%; left: 2%;" src="themixlogo.png" alt="backround">
 <h1 id="hh1" style="display: none">We know how that feels..</h1>
 <h2 id="hh2" class="hh" >Please give us some more details about that...</h2>
 <input type="button" id="ski" style="left:5%;"value="Skip"/>
 <input type="text" style="position: absolute; z-index: 2; left:40%;top:50%; width:250px;"/>
-<input type="button" id="nex" onclick='location.href = "index3.html"' style="left:85%;" value="Give me a solution" />
+<input type="button" id="nex" onclick="page3()"  style="left:85%;" value="Give me a solution" />
 <img class="smiley1" id="sml1" style="display: none" src="happy-smiley.png" alt="backround">
 <div id="hh3" class="slidecontainer" style="display: none">
 
@@ -32,6 +34,10 @@
         document.getElementById("sml1").style.display="block";
         document.getElementById("ski").style.display="block";
         document.getElementById("nex").style.display="block";
+    }
+
+    function page3(){
+        window.location.href = "index3.html";
     }
 </script>
 </body>
