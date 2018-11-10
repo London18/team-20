@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor="#EB5E5E">
+
+<h3>Creating a new account (Click log in if you are already a user)</h3>
+
+Please input your preferred name: <input type="text" id="myname" ><br>
+Please input your age: <input id="myage" type="number"><br>
+Please input your enthnicity: <input type="text" id="myenth" ><br>
+Please input your gender (Female or Male): <input type="text" id="mygen" ><br>
+Please input one of the reasons you are unhappy: <input type="text" id="mykey1" ><br>
+Please input another reason you are unhappy: <input type="text" id="mykey2"><br>
+Please input your Lat: <input id="mylat" type="number"><br>
+Please input your Lon: <input id="mylon" type="number"><br>
+
+
+
+<button onclick="myFunction()">Submit</button>
+  <div id = "feedback"></div>
+  <div id = "success">
+  <a href = "index.html">Log In</a></div>
+
+<script>
+function myFunction() {
+    var name = document.getElementById("myname").value;
+    var age = document.getElementById("myage").value;
+    var enth = document.getElementById("myenth").value;
+    var gen = document.getElementById("mygen").value;
+    var key1 = document.getElementById("mykey1").value;
+    var key2 = document.getElementById("mykey2").value;
+    var lat = document.getElementById("mylat").value;
+    var lon = document.getElementById("mylon").value;
+    var timestamp = new Date().getUTCMilliseconds();
+    var person = { 
+          "ID":timestamp,
+          "Name":name,
+          "Gender": gen,
+          "Age":age,
+          "Ethnicity":enth,
+          "Keywords":[key1, key2],
+          "Location": { "Lat":lat, "Lon":-lon},
+         };
+  var objectOutput = window.localStorage.getItem("data");
+  var arr = JSON.parse(objectOutput)
+  arr.push(person)
+  window.localStorage.clear();
+  window.localStorage.setItem("data", JSON.stringify(arr));
+  document.getElementById("feedback").innerHTML = "successfully created user";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Mix & Match Demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Website ui-->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
+    
+    <!-- Real-time Chat thing -->
+    <script src="https://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
+    <script src="./lib/client.js"></script>
+    <!-- functions -->
+    <script src="./lib/data.js"></script>
+    <script src="./lib/update.js"></script>
+    <script src="./lib/person.js"></script>
+    <script src="./lib/api.js"></script>
+ 
+    
+    
+  </head>  
+  <body>
+    <div class="card bg-info border">
+    <div class = "card-body">
+    <h1 class="card-title font-weight-light">The Mix & Match Demo</h1>
+    <p class="card-text font-weight-light">
+       This app illustrates how a user can be matched with another user based on the keywords they use, be it from communciating with chatbots, clicking on links, end of page surveys, or posting on the forum.
+    </p>
+    
+    <form>
+      <div class="form-group col-md-6">
+        <label for="input-name">Username</label>
+        <input type="name" class="form-control" id="input-name" placeholder="Steve Jobs">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary login-button">Login</button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary create-button" onclick="location.href = 'input.html'">New User</button>
+      </div>
+    </form>
+      
+  </div>
+    </div>
+    
+    <div id="chatroom" class="card bg-warning" style="display:none">
+      <div class="card-body">
+        <span id="whoareyouconnectedto" class="card-text font-weight-light">
+        </span>
+        <p id="identity" class="card-text font-weight-light">
+        </p>
+        <p id = "moreinfo" class="card-text font-weight-light">
+          
+        </p>
+         <div id="log"></div>
+      
+      <input type="text" id="msgInput" class="textarea" placeholder="Enter your message"></input>
+<button id = "sendButton" class="btn btn-primary send-button" type="button" name="action" onclick="sendMessage()">
+  Send Message
+</button>
+      
+      </div>
+      
+    </div>
+    
+    <script>
+    $('.login-button').on('click',function(evt){
+      let name = document.querySelector('#input-name').value;
+      if(name){
+        myName = name;
+        // cheat: find myself in the database, then create a person object for myself, then call findclosestmatch()
+        var me;
+        for(var i = 0;i<data.length;i++){
+          if(data[i].Name === myName){
+            me = new Person(data[i].ID,data[i].Name,data[i].Gender,data[i].Age,data[i].Ethnicity, data[i].Keywords, data[i].Location);
+          }
+        }
+        if(me === undefined){
+          alert("no user found");
+        }
+        else{
+          
+          var bestmatch = me.findclosestmatch(data);
+          
+          chatChannel = me.getId() + bestmatch.getId();
+          chatChannel = chatChannel + "";
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+              document.getElementById("moreinfo").innerHTML = "Lives in " + JSON.parse(this.responseText).address.state + ", is " + bestmatch.getAge() + ", and has experienced " + bestmatch.getKeywords()[0] + "."
+            }
+          };
+          xhttp.open("GET", "https://nominatim.openstreetmap.org/reverse?format=json&lat="+bestmatch.getLocation().Lat+"&lon="+bestmatch.getLocation().Lon+"&zoom=18&addressdetails=1", true);
+          xhttp.send();
+          document.getElementById("whoareyouconnectedto").innerHTML="Connect with "+bestmatch.getName() + " who has gone through similar issues as you have.";
+          document.getElementById("identity").innerHTML = bestmatch.getName();
+          document.getElementById("chatroom").style.display = "block";
+          connectToRealtime();
+        }
+      }      
+    });
+      // Bind keypress to send message on enter key press
+$("#msgInput").bind("keypress", function(e) {
+  if(e.keyCode == 13) {
+    sendMessage();
+  }
+});
+      /* For Reference
+    $('#upload-file').on('change',function(evt){
+      let file = evt.target.files[0];
+      if(file.type.match('\.json')){
+        let reader = new FileReader();
+        let filename = file.name;
+        reader.onload = (function(theFile){
+          return function(e){
+            generate_prwm_from_json_object(JSON.parse(e.target.result),filename);  
+          };
+        })(file);
+        reader.readAsText(file);
+      }
+    });
+    */
+      
+    
+    </script>
+  </body>
+</html>
