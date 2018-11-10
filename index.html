@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>The Mix</title>
+</head>
+<body>
+<h1 id="hh1" style="display: none">We are here to help.</h1>
+<h2 id="hh2" class="hh" style="display: none">Drag the slider and let us know more about you....</h2>
+<input type="button" id="ski" style="display: none; left:5%;"value="Skip"/>
+<input type="button" id="nex" onclick="page2()" style="display: none; left:85%;" value="Next"/>
+<img class="smiley1" id="sml1" style="display: none" src="happy-smiley.png" alt="backround">
+<div id="hh3" class="slidecontainer" style="display: none">
+
+    <input id="sliderr"type="range" onchange="updateSlider(this.value)" min="1" max="6" value="3" class="slider" id="myRange">
+    <img class="smiley2"  src="sad-smiley.png" alt="backround">
+</div>
+<h3 id="slvalue" style="display: none; z-index: 2; position: absolute;">Value</h3>
+<div id="blackout" style='display:none;'></div>
+<img id="backrr" onclick="cl()"  src="backround.png" alt="backround">
+
+
+
+
+<script>
+    function cl() {
+        document.getElementById('blackout').style.display = 'block';
+        document.getElementById("hh1").style.display = 'block';
+        document.getElementById("hh2").style.display = 'block';
+        document.getElementById("hh3").style.display = 'block';
+        document.getElementById("sml1").style.display="block";
+        document.getElementById("ski").style.display="block";
+        document.getElementById("nex").style.display="block";
+        document.getElementById("slvalue").style.display="block";
+    }
+
+    function page2(){
+        window.location.href = "index2.html";
+    }
+
+    function updateSlider(value){
+        console.log(value);
+        if(value==1){
+            document.getElementById("slvalue").innerHTML="OK";
+        }else if(value==2){
+            document.getElementById("slvalue").innerHTML="Good";
+        }else if(value==3){
+            document.getElementById("slvalue").innerHTML="Moderate";
+        }else if(value==4){
+            document.getElementById("slvalue").innerHTML="Awful";
+        }else if(value==5){
+            document.getElementById("slvalue").innerHTML="Very Bad";
+        }else if(value==6){
+            document.getElementById("slvalue").innerHTML="Suicide Level";
+        }
+
+    }
+
+</script>
+</body>
+</html>
