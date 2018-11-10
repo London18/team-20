@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>A demonstration of how to access a Text Field</h3>
+
+Please input your preferred name:<input type="text" id="myname" >
+Please input your age:<input id="myage" type="number">
+Please input your enthnicity:<input type="text" id="myenth" >
+Please input your gender (Female or Male):<input type="text" id="mygen" >
+Please input one of the reasons you are unhappy:<input type="text" id="mykey1" >
+Please input another reason you are unhappy:<input type="text" id="mykey2">
+Please input your Lat:<input id="mylat" type="number">
+Please input your Lon:<input id="mylon" type="number">
+
+
+<p>Click the "Try it" button to get the text in the text field.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+    var name = document.getElementById("myname").value;
+    var age = document.getElementById("myage").value;
+    var enth = document.getElementById("myenth").value;
+    var gen = document.getElementById("mygen").value;
+    var key1 = document.getElementById("mykey1").value;
+    var key2 = document.getElementById("mykey2").value;
+    var lat = document.getElementById("mylat").value;
+    var lon = document.getElementById("mylon").value;
+
+
+}
+</script>
+
+</body>
+</html>
