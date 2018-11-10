@@ -1,0 +1,2 @@
+jQuery(document).ready(function($){$('.helpline-box').css('display','none');$('.helpline-box').first().css('display','block');$('.helplines-header h2').removeClass('helpline-no-js').addClass('elementClosed');$('.helplines-header h2').first().removeClass('elementClosed').addClass('elementOpen');$('.sliding-container').each(function(){$(this).find('h2').on('click',function(){if($(this).hasClass('elementOpen')){$(this).toggleClass('elementClosed elementOpen');}else{$(this).toggleClass('elementOpen elementClosed');}
+$(this).parent().next().slideToggle();});});});

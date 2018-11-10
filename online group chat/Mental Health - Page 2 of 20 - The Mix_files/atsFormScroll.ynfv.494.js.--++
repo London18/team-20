@@ -1,0 +1,1 @@
+jQuery("document").ready(function($){if($('label.formError').length){$.getScript("/wp-content/themes/connected/js/jquery.scrollTo-1.4.3.1-min.js").done(function(script,textStatus){$.scrollTo('.stepBoxTwo',{offset:{axis:'y',top:-55}});}).fail(function(jqxhr,settings,exception){});}});

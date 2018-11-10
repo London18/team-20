@@ -1,0 +1,11 @@
+jQuery(document).ready(function($){function getUrlVars(url){var map={};var parts=url.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value){map[key]=value;});return map;}
+function isElementPresent(element){if(element.length>0){return true;}
+return false;}
+function redirectToNoGclid(){window.location=window.location.origin+window.location.pathname;}
+function autorun(){if(isElementPresent($('#idc-container-parent'))===true){$('#IDCommentNewThreadText')[0].onfocus=null;$('#IDCommentNewThreadText').focus(function(){redirectToNoGclid();});stopChecks();}
+if(checks>5){stopChecks();}
+checks++;}
+function stopChecks(){clearInterval(check);check=0;}
+function escapeRegExp(str){return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,"\\$&");}
+var url=window.location.href;var gclid=getUrlVars(url)["gclid"];if(gclid){var checks=0;var check=setInterval(autorun,2000);}
+var referrer=document.referrer;var referrerGclid=getUrlVars(referrer)["gclid"];var currentLocation=window.location.toString();if(referrer===(currentLocation+'?gclid='+referrerGclid)){if($('#IDCommentsPostTitle').length>0){var matchRule='/'+escapeRegExp(currentLocation)+'\?gclid=(.*)/gi';var regex=new RegExp(currentLocation,"gi");var foundMatches=referrer.match(regex);if(foundMatches!==null){$.getScript("/wp-content/themes/connected/js/jquery.scrollTo-1.4.3.1-min.js").done(function(script,textStatus){$.scrollTo('.backToTop',2000,{easing:'swing',axis:'y',onAfter:function(){if(isElementPresent($('#IDCommentNewThreadText'))){$('#IDCommentNewThreadText').focus();}}});}).fail(function(jqxhr,settings,exception){});}}}});

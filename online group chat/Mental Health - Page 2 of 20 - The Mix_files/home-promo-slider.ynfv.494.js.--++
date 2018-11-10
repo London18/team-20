@@ -1,0 +1,2 @@
+jQuery(document).ready(function($){var ticker=function()
+{setTimeout(function(){$('#home-promo-banner ul li:first').fadeToggle(1000,function(){$(this).detach().appendTo('#home-promo-banner ul').removeAttr('style').removeClass('first-promo-item');$('#home-promo-banner ul li:first').fadeIn(800);});ticker();},6000)};ticker();});
